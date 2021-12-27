@@ -1,11 +1,12 @@
-import { Home } from "home/Home";
 import { Login } from "login/Login";
 import About from "pages/About";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { PrivateRoute } from "_components/PrivateRoute";
 
 import { history } from "_helpers";
+import Layout from "_components/layout/Layout";
+import { PrivateRoute } from "./PrivateRoute";
+import { Home } from "home/Home";
 
 function RouteTables() {
   return (
@@ -15,7 +16,9 @@ function RouteTables() {
         path="/"
         element={
           // <PrivateRoute>
-          <Home />
+          <Layout>
+            <Home />
+          </Layout>
           // </PrivateRoute>
         }
       />
@@ -23,9 +26,9 @@ function RouteTables() {
       <Route
         path="/about"
         element={
-          <PrivateRoute>
+          <Layout>
             <About />
-          </PrivateRoute>
+          </Layout>
         }
       />
     </Routes>

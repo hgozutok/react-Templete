@@ -16,10 +16,12 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { ToggleTheme } from "_components/theme/ToggleTheme";
 
 const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-function Nav() {
+const settings = ["Profile", "Account", "Dashboard"];
+
+function Navbar() {
   const auth = useRecoilValue(authAtom);
   const userActions = useUserActions();
 
@@ -111,12 +113,14 @@ function Nav() {
               </Button>
             ))}
           </Box>
-
+          <Box sx={{ flexGrow: 0 }}>
+            <ToggleTheme />
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             {auth ? (
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={auth?.username} src={auth?.image} />
                 </IconButton>
               </Tooltip>
             ) : (
@@ -145,9 +149,9 @@ function Nav() {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-              <Button variant="contained" onClick={() => userActions.logout()}>
-                Logout
-              </Button>
+              <MenuItem onClick={() => userActions.logout()}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
@@ -156,4 +160,4 @@ function Nav() {
   );
 }
 
-export { Nav };
+export { Navbar };

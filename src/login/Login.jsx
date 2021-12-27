@@ -60,9 +60,7 @@ function Login({ history }) {
       alignItems="center"
       minHeight="100vh"
     >
-      <Card
-        sx={{ maxWidth: 475, minWidth: 375, backgroundColor: "whitesmoke" }}
-      >
+      <Card sx={{ maxWidth: 475, minWidth: 375 }}>
         <CardContent>
           <Typography variant="h5" color="text.secondary" gutterBottom>
             Please Login
